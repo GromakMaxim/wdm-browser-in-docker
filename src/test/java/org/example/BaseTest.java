@@ -11,9 +11,13 @@ public class BaseTest {
 
     @BeforeEach
     void setupTest() {
-        driver = wdm
-                .browserInDocker()
-                .browserVersion("96.0")
-                .create();
+        try {
+            driver = wdm
+                    .browserInDocker()
+                    .dockerCustomImage(Images.CHROME_104.getImage())
+                    .create();
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
     }
 }
