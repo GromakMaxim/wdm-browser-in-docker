@@ -1,20 +1,20 @@
 package org.example;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.junit.Test;
+import java.time.Duration;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+
+public class AppTest extends BaseTest {
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void shouldAnswerWithTrue() {
+        this.driver.get("chrome://version");
+        var target = new WebDriverWait(this.driver, Duration.ofSeconds(5))
+                .withMessage("some error message")
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("version")));
+        System.out.println(target.getText());
     }
 }
